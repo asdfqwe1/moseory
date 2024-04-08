@@ -17,8 +17,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float x=Input.GetAxisRaw("Horizontal");
-        movement2D.Move(x);
+        Vector2 inputMove = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        movement2D.Move(inputMove);
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            StartCoroutine(dash.Dash());
+            StartCoroutine(dash.Dash(inputMove));
         }
         if(Input.GetKeyDown (KeyCode.X))
         {

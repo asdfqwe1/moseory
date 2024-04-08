@@ -27,10 +27,10 @@ public class Movement2D : MonoBehaviour
         Flip();
     }
 
-    public void Move(float x)
+    public void Move(Vector2 inputMove)
     {
         if (dash.isDashing()) return;
-        rigid2D.velocity=new Vector2 (x*speed,rigid2D.velocity.y);
+        rigid2D.velocity=new Vector2 (inputMove.x*speed,rigid2D.velocity.y);
     }
 
     public void Jump( )

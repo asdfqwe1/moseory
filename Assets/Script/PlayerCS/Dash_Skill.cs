@@ -23,13 +23,12 @@ public class Dash_Skill : MonoBehaviour
         if(tr == null) tr=GetComponent<TrailRenderer>();
     }
 
-    // Update is called once per frame
     void Update()
     {
 
     }
 
-    public IEnumerator Dash()
+    public IEnumerator Dash(Vector2 inputMove)
     {
         if (!dashed)
         {
@@ -40,7 +39,7 @@ public class Dash_Skill : MonoBehaviour
 
             float originGravity = rigid2D.gravityScale;
             rigid2D.gravityScale = 0f;
-            rigid2D.velocity=new Vector2(transform.localScale.x*dashSpeed,0f);
+            rigid2D.velocity = inputMove.normalized * dashSpeed;
             yield return new WaitForSeconds(dashTime);
             dashing = false;
             tr.emitting = false;
