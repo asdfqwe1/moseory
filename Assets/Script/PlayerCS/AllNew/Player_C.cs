@@ -7,6 +7,7 @@ public class Player_C : MonoBehaviour
 {
     private Collision coll;
     private Rigidbody2D rb;
+    private PlayerAnimation anim;
 
     [Header("Movement")]
     [Tooltip("이동 속도")]
@@ -24,11 +25,11 @@ public class Player_C : MonoBehaviour
     public float dashTime = .3f;
     [Space]
     [Header("Boolean")]
-    private bool wallGrab;
-    private bool wallSlide;
-    private bool wallJumped;
-    private bool canMove = true;
-    private bool isDashing;
+    public bool wallGrab;
+    public bool wallSlide;
+    public bool wallJumped;
+    public bool canMove = true;
+    public bool isDashing;
     [Space]
     private bool hasDashed;
     private bool groundTouch;
@@ -44,6 +45,7 @@ public class Player_C : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collision>();
+        anim=GetComponentInChildren<PlayerAnimation>();
 
         rb.gravityScale = gravityScale;
     }
@@ -57,9 +59,30 @@ public class Player_C : MonoBehaviour
         float yRaw = Input.GetAxisRaw("Vertical");
         Vector2 dir = new Vector2(x,y);
         Walk(dir);
+
+        anim.SetHorizontalMovement(x, y, rb.velocity.y);
+
+        /*
         //wallWalk
-        wallGrab = coll.onWall&&Input.GetButton("Fire2");
+        if(coll.onWall&&Input.GetButton("Fire2")&&canMove)
+        {
+            if (side != coll.wallSide) anim.Flip(side * -1);
+            wallGrab = true;
+            wallSlide = false;
+        }
+
+        if(Input.GetButton("Fire2")||!coll.onWall||!canMove)
+        {
+            wallGrab = false;
+            wallSlide = false;
+        }
         
+        if(coll.onGround&&!isDashing)
+        {
+            wallJumped = false;
+            GetComponent<Betterjump>().enabled = true;
+        }
+
         if (wallGrab&&!isDashing)
         {
             rb.gravityScale = 0;
@@ -88,6 +111,8 @@ public class Player_C : MonoBehaviour
         //jump
         if (Input.GetButtonDown("Fire3"))
         {
+            anim.Trigger("Jump");
+
             if (coll.onGround)
             {
                 Jump(Vector2.up, false);
@@ -118,10 +143,100 @@ public class Player_C : MonoBehaviour
         if (x > 0)
         {
             side = 1;
+            anim.Flip(side);
         }
         if (x < 0)
         {
             side = -1;
+            anim.Flip(side);
+        }
+        */
+        if (coll.onWall && Input.GetButton("Fire2") && canMove)
+        {
+            if (side != coll.wallSide)
+                anim.Flip(side * -1);
+            wallGrab = true;
+            wallSlide = false;
+        }
+
+        if (Input.GetButtonUp("Fire2") || !coll.onWall || !canMove)
+        {
+            wallGrab = false;
+            wallSlide = false;
+        }
+
+        if (coll.onGround && !isDashing)
+        {
+            wallJumped = false;
+            GetComponent<Betterjump>().enabled = true;
+        }
+
+        if (wallGrab && !isDashing)
+        {
+            rb.gravityScale = 0;
+            if (x > .2f || x < -.2f)
+                rb.velocity = new Vector2(rb.velocity.x, 0);
+
+            float speedModifier = y > 0 ? .5f : 1;
+
+            rb.velocity = new Vector2(rb.velocity.x, y * (speed * speedModifier));
+        }
+        else
+        {
+            rb.gravityScale = 3;
+        }
+
+        if (coll.onWall && !coll.onGround)
+        {
+            if (x != 0 && !wallGrab)
+            {
+                wallSlide = true;
+                WallSlide();
+            }
+        }
+
+        if (!coll.onWall || coll.onGround)
+            wallSlide = false;
+
+        if (Input.GetButtonDown("Fire3"))
+        {
+            anim.Trigger("Jump");
+
+            if (coll.onGround)
+                Jump(Vector2.up, false);
+            if (coll.onWall && !coll.onGround)
+                WallJump();
+        }
+
+        if (Input.GetButtonDown("Fire1") && !hasDashed)
+        {
+            if (xRaw != 0 || yRaw != 0)
+                Dash(xRaw, yRaw);
+        }
+
+        if (coll.onGround && !groundTouch)
+        {
+            GroundTouch();
+            groundTouch = true;
+        }
+
+        if (!coll.onGround && groundTouch)
+        {
+            groundTouch = false;
+        }
+
+        if (wallGrab || wallSlide || !canMove)
+            return;
+
+        if (x > 0)
+        {
+            side = 1;
+            anim.Flip(side);
+        }
+        if (x < 0)
+        {
+            side = -1;
+            anim.Flip(side);
         }
     }
 
@@ -144,6 +259,8 @@ public class Player_C : MonoBehaviour
     {
         hasDashed = true;
 
+        anim.Trigger("Dash");
+
         rb.velocity = Vector2.zero;
         Vector2 dir = new Vector2(x, y);
 
@@ -162,6 +279,7 @@ public class Player_C : MonoBehaviour
         if ((side == 1 && coll.onRightWall) || (side == -1 && coll.onLeftWall))
         {
             side *= -1;
+            anim.Flip(side);
         }
 
         StopCoroutine(DisableMovement(0));
@@ -178,8 +296,10 @@ public class Player_C : MonoBehaviour
     {
         if (coll.wallSide != side)
         {
-
+            anim.Flip(side*-1);
         }
+        if(!canMove) { return; }
+
         bool pushingWall = false;
         if((rb.velocity.x>0&&coll.onRightWall) || (rb.velocity.x < 0 && coll.onLeftWall))
         {
