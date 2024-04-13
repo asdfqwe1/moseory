@@ -23,6 +23,7 @@ public class Player_C : MonoBehaviour
     [Space]
     [Header("Control Timing")]
     public float dashTime = .3f;
+    public float defaultStamina = 3f;
     [Space]
     [Header("Boolean")]
     public bool wallGrab;
@@ -33,6 +34,7 @@ public class Player_C : MonoBehaviour
     [Space]
     private bool hasDashed;
     private bool groundTouch;
+    private float stamina;
     [Header("Scale")]
     public float gravityScale = 3f;
     public float wallJumpToY;
@@ -171,8 +173,10 @@ public class Player_C : MonoBehaviour
             GetComponent<Betterjump>().enabled = true;
         }
 
-        if (wallGrab && !isDashing)
+        if (wallGrab && !isDashing && stamina > 0)
         {
+            stamina -= Time.deltaTime;
+
             rb.gravityScale = 0;
             if (x > .2f || x < -.2f)
                 rb.velocity = new Vector2(rb.velocity.x, 0);
@@ -313,6 +317,7 @@ public class Player_C : MonoBehaviour
     {
         hasDashed = false;
         isDashing = false;
+        stamina = defaultStamina;
     }
     IEnumerator DisableMovement(float time)
     {
