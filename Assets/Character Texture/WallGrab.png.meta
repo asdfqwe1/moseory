@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: abf4f1e4e014d344a830c572a45154d8
+guid: 74d34ac505dc52e4293c2d0fdb1bf7f7
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 525
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,19 +113,19 @@ TextureImporter:
       name: WallGrab_0
       rect:
         serializedVersion: 2
-        x: 256
-        y: 160
-        width: 608
-        height: 768
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 60
+        y: 0
+        width: 380
+        height: 600
+      alignment: 9
+      pivot: {x: 0.5, y: 0.91}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 76e8dee6b5a50fc4da2ce35a56263d11
-      internalID: -853603444
+      spriteID: 1102962107c87bc4a969320df1ef4eac
+      internalID: -237670488
       vertices: []
       indices: 
       edges: []
@@ -141,7 +141,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      WallGrab_0: -853603444
+      WallGrab_0: -237670488
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
