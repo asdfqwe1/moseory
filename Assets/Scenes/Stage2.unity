@@ -2241,11 +2241,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1679245641301985368, guid: 8b2c54ec5971f4046bcb708f3e224de2, type: 3}
       propertyPath: slideSpeed
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1679245641301985368, guid: 8b2c54ec5971f4046bcb708f3e224de2, type: 3}
       propertyPath: wallJumpToX
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1679245641301985368, guid: 8b2c54ec5971f4046bcb708f3e224de2, type: 3}
+      propertyPath: defaultStamina
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1831403734257266414, guid: 8b2c54ec5971f4046bcb708f3e224de2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2289,7 +2293,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2803214277336661184, guid: 8b2c54ec5971f4046bcb708f3e224de2, type: 3}
       propertyPath: fallMultiplier
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2803214277336661184, guid: 8b2c54ec5971f4046bcb708f3e224de2, type: 3}
       propertyPath: lowJumpMultiplier
