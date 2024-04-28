@@ -333,11 +333,13 @@ public class Player_C : MonoBehaviour
         GetComponent<Betterjump>().enabled = false;
         wallJumped = true;
         isDashing = true;
+        canMove = false;
         yield return new WaitForSeconds(time);
         rb.gravityScale = gravityScale;
         GetComponent<Betterjump>().enabled = true;
         wallJumped = false;
         isDashing = false;
+        canMove = true;
     }
     IEnumerator GroundDash()
     {
