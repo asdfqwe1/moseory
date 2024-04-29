@@ -42,6 +42,12 @@ public class Player_C : MonoBehaviour
     [Space]
     [HideInInspector]
     public int side = 1;
+    [Space]
+    [Header("Polish")]
+    public ParticleSystem dashParticle;
+    public ParticleSystem jumpParticle;
+    public ParticleSystem wallJumpParticle;
+    public ParticleSystem slideParticle;
     // Start is called before the first frame update
     void Start()
     {
@@ -229,6 +235,8 @@ public class Player_C : MonoBehaviour
             groundTouch = false;
         }
 
+        wallParticle(y);
+
         if (wallGrab || wallSlide || !canMove)
             return;
 
@@ -274,8 +282,13 @@ public class Player_C : MonoBehaviour
 
     private void Jump(Vector2 dir, bool wall)
     {
+        slideParticle.transform.parent.localScale = new Vector3(ParticleSide(), 1, 1);
+        ParticleSystem particle = wall ? wallJumpParticle : jumpParticle;
+
         rb.velocity = new Vector2(rb.velocity.x, 0);
         rb.velocity += dir * jumpForce;
+
+        particle.Play();
     }
 
     private void WallJump()
@@ -318,6 +331,7 @@ public class Player_C : MonoBehaviour
         hasDashed = false;
         isDashing = false;
         stamina = defaultStamina;
+        jumpParticle.Play();
     }
     IEnumerator DisableMovement(float time)
     {
@@ -329,12 +343,16 @@ public class Player_C : MonoBehaviour
     {
         StartCoroutine(GroundDash());
 
+        dashParticle.Play();
         rb.gravityScale = 0;
         GetComponent<Betterjump>().enabled = false;
         wallJumped = true;
         isDashing = true;
         canMove = false;
+
         yield return new WaitForSeconds(time);
+
+        dashParticle.Stop();
         rb.gravityScale = gravityScale;
         GetComponent<Betterjump>().enabled = true;
         wallJumped = false;
@@ -345,5 +363,24 @@ public class Player_C : MonoBehaviour
     {
         yield return new WaitForSeconds(.15f);
         if(coll.onGround) { hasDashed = false; }
+    }
+    void wallParticle(float vertical)
+    {
+        var main = slideParticle.main;
+
+        if (wallSlide || (wallGrab && vertical < 0))
+        {
+            slideParticle.transform.parent.localScale = new Vector3(ParticleSide(), 1, 1);
+            main.startColor = Color.white;
+        }
+        else
+        {
+            main.startColor = Color.clear;
+        }
+    }
+    int ParticleSide()
+    {
+        int particleSide = coll.onRightWall ? 1 : -1;
+        return particleSide;
     }
 }
