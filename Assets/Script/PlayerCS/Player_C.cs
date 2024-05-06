@@ -2,12 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class Player_C : MonoBehaviour
 {
     private Collision coll;
     private Rigidbody2D rb;
     private PlayerAnimation anim;
+    public DashCrystal dashCrystal;
 
     [Header("Movement")]
     [Tooltip("이동 속도")]
@@ -383,4 +385,22 @@ public class Player_C : MonoBehaviour
         int particleSide = coll.onRightWall ? 1 : -1;
         return particleSide;
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("crystal"))
+        {
+            hasDashed = false;
+            isDashing = false;
+            stamina = defaultStamina;
+
+            Vector3 respawnPosition = collision.transform.position;
+            float respawnDelay = 3f;
+
+            FindObjectOfType<DashCrystal>().RespawnCrystal(respawnPosition, respawnDelay);
+
+            Destroy(collision.gameObject);
+        }
+    }
+
 }
