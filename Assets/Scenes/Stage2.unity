@@ -2097,6 +2097,56 @@ Transform:
   m_Children: []
   m_Father: {fileID: 182936465}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &918208335
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 918208337}
+  - component: {fileID: 918208336}
+  m_Layer: 0
+  m_Name: StageManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &918208336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 918208335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 200c98c30b2cccf4cbe693ae5ed11e6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SavePointOBJ: {fileID: 6211330774129696837, guid: aeb8cf46c9fc35643ab1a211497b8a87, type: 3}
+  stageSavePoint:
+  - {x: -13, y: -6}
+  - {x: 13, y: 25}
+  collisionSize: {x: 3, y: 1}
+  collisionColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+--- !u!4 &918208337
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 918208335}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.5, y: 0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &955851587
 GameObject:
   m_ObjectHideFlags: 0
@@ -38066,6 +38116,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6759899644218389664, guid: f623300a4aa368d40bb69b2aba297566, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -39122,3 +39176,4 @@ SceneRoots:
   - {fileID: 2036870187}
   - {fileID: 250697531}
   - {fileID: 1476988775}
+  - {fileID: 918208337}
