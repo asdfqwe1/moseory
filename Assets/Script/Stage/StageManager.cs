@@ -10,11 +10,11 @@ public class StageManager : MonoBehaviour
 {
     public GameObject SavePointOBJ;
     [Header("Gizmo")]
-    [Tooltip("¼¼ÀÌºê Æ÷ÀÎÆ®\n½ºÅ×ÀÌÁö ÃÊ¹Ý ºÎºÐÀ» 0¹øºÎÅÍ ¹èÄ¡")]
+    [Tooltip("ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½ï¿½Æ®\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¹ï¿½ ï¿½Îºï¿½ï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡")]
     public List<Vector2Int> stageSavePoint;
-    [Tooltip("Gizmo Å©±â\n¼¼ÀÌºê Æ÷ÀÎÆ® Å©±â¿Í °ü·ÃÀÖÀ½\n±âÁî¸ð Å©±â = ¼¼ÀÌºê Æ÷ÀÎÆ® ÀÎ½Ä ¹Ú½º Å©±â")]
+    [Tooltip("Gizmo Å©ï¿½ï¿½\nï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½ï¿½Æ® Å©ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½ = ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Î½ï¿½ ï¿½Ú½ï¿½ Å©ï¿½ï¿½")]
     public Vector2 collisionSize = Vector2.one;
-    [Tooltip("Gizmo »ö±ò")]
+    [Tooltip("Gizmo ï¿½ï¿½ï¿½ï¿½")]
     public Color collisionColor = Color.yellow;
     [Space]
     [Header("SavePoint")]
