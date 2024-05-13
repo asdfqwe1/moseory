@@ -68,12 +68,6 @@ public class Player_C : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (coll.onHit)
-        {
-            KillSwitch();
-            return;
-        }
-
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
         float xRaw = Input.GetAxisRaw("Horizontal");
@@ -415,19 +409,16 @@ public class Player_C : MonoBehaviour
     }
 
     private void Die(){
-        isDead = true;
         anim.Trigger("isDead");
     }
 
     private void Revive(){
         this.transform.position=stageManager.GetNowSave();
-        isDead = false;
     }
 
     public void KillSwitch(){
-        Debug.Log("Get playerKillSwitch! IsDead status = "+isDead);
-        if (isDead) return;
-        StartCoroutine(DieAndRevive(reviveWaitTime));
+        Debug.Log("Get playerKillSitch ON! Now IsDead status = "+isDead);
+        if(!isDead) StartCoroutine(DieAndRevive(reviveWaitTime));
     }
 
     IEnumerator DieAndRevive(float waitTime)

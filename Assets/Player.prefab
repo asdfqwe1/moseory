@@ -9862,16 +9862,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7694c5e0dae51b54e9b0c4892a672b47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stageManager: {fileID: 0}
-  dashCrystal: {fileID: 0}
-  speed: 7
+  speed: 10
   jumpForce: 15
   slideSpeed: 5
   wallJumpLerp: 10
   dashSpeed: 25
   dashTime: 0.1
   defaultStamina: 3
-  reviveWaitTime: 0.6
   wallGrab: 0
   wallSlide: 0
   wallJumped: 0
@@ -9914,20 +9911,15 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
-  thornLayer:
-    serializedVersion: 2
-    m_Bits: 1024
   collisionRadius: 0.1
   bottomOffset: {x: 0, y: -1}
   rightOffset: {x: 0.35, y: -0.6}
   leftOffset: {x: -0.35, y: -0.6}
-  capsuleColl2D: {fileID: 0}
   onGround: 0
   onWall: 0
   onRightWall: 0
   onLeftWall: 0
   wallSide: 0
-  onHit: 0
 --- !u!70 &8346069785663980166
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

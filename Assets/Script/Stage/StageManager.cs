@@ -9,28 +9,18 @@ using UnityEngine.UIElements;
 
 public class StageManager : MonoBehaviour
 {
-    public GameObject Player_pref;
     public GameObject SavePointOBJ;
-    [Header("★Debug Tool★")]
-    [Tooltip("If you want to test the room, activate the check box")]
-    public bool DebugRoom;
-    [Tooltip("Please enter the element number of the room you want to test\nThe place in 'Element 0' represents 0")]
-    public int StartPoint;
-
-    [Space]
     [Header("Gizmo")]
-    [Tooltip("Specify the location by adding an element.\nIt is loaded in order of the number of elements.")]
+    [Tooltip("���̺� ����Ʈ\n�������� �ʹ� �κ��� 0������ ��ġ")]
     public List<Vector2Int> stageSavePoint;
-    [Tooltip("Indicates the size of the savepoint")]
+    [Tooltip("Gizmo ũ��\n���̺� ����Ʈ ũ��� ��������\n����� ũ�� = ���̺� ����Ʈ �ν� �ڽ� ũ��")]
     public Vector2 collisionSize = Vector2.one;
-    [Tooltip("Indicates the color of the savepoint")]
+    [Tooltip("Gizmo ����")]
     public Color collisionColor = Color.yellow;
     [Space]
     [Header("SavePoint")]
     private int nowSave = 0;
     private Dictionary<int, Vector3> savePoints = new Dictionary<int, Vector3>();
-    [SerializeField]
-    private GameObject Player;
     // Start is called before the first frame update
     void Start()
     {
@@ -48,15 +38,6 @@ public class StageManager : MonoBehaviour
             obj.GetComponent<StageBox>().setNum(dic.Key);
             Debug.Log("Dictionary: " + dic.Key +" | "+dic.Value);
         }
-        //Find "Player" Object and replace start point
-        if (GameObject.Find("Player"))
-        {
-            Player = GameObject.Find("Player");
-            Player.transform.position = GetNowSave();
-        }
-        else Player = Instantiate(Player_pref, GetNowSave(), Quaternion.identity);
-
-        if (DebugRoom) Player.transform.position = savePoints[StartPoint] + this.transform.position;
     }
     private void OnDrawGizmosSelected()
     { 
