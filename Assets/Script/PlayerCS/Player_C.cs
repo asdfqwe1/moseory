@@ -9,23 +9,26 @@ public class Player_C : MonoBehaviour
     private Collision coll;
     private Rigidbody2D rb;
     private PlayerAnimation anim;
+    [SerializeField]
+    private StageManager stageManager;
     public DashCrystal dashCrystal;
 
     [Header("Movement")]
-    [Tooltip("ÀÌµ¿ ¼Óµµ")]
+    [Tooltip("ï¿½Ìµï¿½ ï¿½Óµï¿½")]
     public float speed = 10f;
-    [Tooltip("Á¡ÇÁ °­µµ")]
+    [Tooltip("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½")]
     public float jumpForce = 2f;
-    [Tooltip("º®¿¡ ºÙ¾úÀ» ¶§ ½½¶óÀÌµù ¼Óµµ")]
+    [Tooltip("ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¾ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½ ï¿½Óµï¿½")]
     public float slideSpeed = 5f;
-    [Tooltip("º®¿¡¼­ Á¡ÇÁÇÒ ¶§ °­µµ(Á¶ÀÛ ½Ã ¿À·ù³¯ È®·ü ÀÖÀ½)")]
+    [Tooltip("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)")]
     public float wallJumpLerp = 10f;
-    [Tooltip("´ë½¬ ¼Óµµ(Å©±â)")]
+    [Tooltip("ï¿½ë½¬ ï¿½Óµï¿½(Å©ï¿½ï¿½)")]
     public float dashSpeed = 20f;
     [Space]
     [Header("Control Timing")]
     public float dashTime = .3f;
     public float defaultStamina = 3f;
+    public float reviveWaitTime = 2f;
     [Space]
     [Header("Boolean")]
     public bool wallGrab;
@@ -37,6 +40,7 @@ public class Player_C : MonoBehaviour
     private bool hasDashed;
     private bool groundTouch;
     private float stamina;
+    private bool isDead;
     [Header("Scale")]
     public float gravityScale = 3f;
     public float wallJumpToY;
@@ -56,6 +60,7 @@ public class Player_C : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collision>();
         anim=GetComponentInChildren<PlayerAnimation>();
+        stageManager=GameObject.Find("StageManager").GetComponent<StageManager>();
 
         rb.gravityScale = gravityScale;
     }
@@ -137,7 +142,7 @@ public class Player_C : MonoBehaviour
         {
             if(xRaw!=0||yRaw!=0) Dash(xRaw,yRaw);
         }
-        //¶¥¿¡ ´ê¾Ò´ÂÁö?
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ò´ï¿½ï¿½ï¿½?
         if (coll.onGround && !groundTouch)
         {
             GroundTouch();
@@ -403,4 +408,24 @@ public class Player_C : MonoBehaviour
         }
     }
 
+    private void Die(){
+
+    }
+
+    private void Revive(){
+        this.transform.position=stageManager.GetNowSave();
+    }
+
+    public void KillSwitch(){
+        Debug.Log("Get playerKillSitch ON! Now IsDead status = "+isDead);
+        if(!isDead) StartCoroutine(DieAndRevive(reviveWaitTime));
+    }
+
+    IEnumerator DieAndRevive(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime/2);
+        Die();
+        Revive();
+        yield return new WaitForSeconds(waitTime/2);
+    }
 }

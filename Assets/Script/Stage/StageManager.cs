@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
+using UnityEngine.UIElements;
 
 public class StageManager : MonoBehaviour
 {
@@ -53,5 +54,16 @@ public class StageManager : MonoBehaviour
     public void SavePointUpdate(int v)
     {
         nowSave = v > nowSave ? v : nowSave;
+    }
+
+    public Vector3 GetNowSave()
+    {
+        if(savePoints.ContainsKey(nowSave)){
+            return savePoints[nowSave]+this.transform.position;
+        }
+        else{
+            Debug.Log("Not matched Key");
+            return Vector3.zero;
+        }
     }
 }
