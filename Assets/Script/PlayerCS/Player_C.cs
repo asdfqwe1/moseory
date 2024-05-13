@@ -409,7 +409,7 @@ public class Player_C : MonoBehaviour
     }
 
     private void Die(){
-
+        anim.Trigger("isDead");
     }
 
     private void Revive(){
@@ -423,9 +423,9 @@ public class Player_C : MonoBehaviour
 
     IEnumerator DieAndRevive(float waitTime)
     {
-        yield return new WaitForSeconds(waitTime/2);
         Die();
-        Revive();
         yield return new WaitForSeconds(waitTime/2);
+        yield return new WaitForSeconds(waitTime/2);
+        Revive();
     }
 }

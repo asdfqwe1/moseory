@@ -54367,7 +54367,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1679245641301985368, guid: f623300a4aa368d40bb69b2aba297566, type: 3}
       propertyPath: reviveWaitTime
-      value: 1
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 1831403734257266414, guid: f623300a4aa368d40bb69b2aba297566, type: 3}
       propertyPath: m_LocalPosition.x
