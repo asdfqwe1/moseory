@@ -6,7 +6,7 @@ using UnityEngine;
 public class DashCrystal : MonoBehaviour
 {
     public GameObject crystalPrefab;
-    public List<Transform> spawnPoints; // 스폰할 위치들의 리스트
+    public List<Transform> spawnPoints;
     private bool isRespawning = false;
 
     private void Start()
@@ -18,7 +18,7 @@ public class DashCrystal : MonoBehaviour
     {
         foreach (Transform spawnPoint in spawnPoints)
         {
-            // 스폰 포인트에서 크리스탈을 스폰합니다.
+            // 스폰 포인트에서 크리스탈을 스폰함.
             Instantiate(crystalPrefab, spawnPoint.position, Quaternion.identity);
         }
     }
