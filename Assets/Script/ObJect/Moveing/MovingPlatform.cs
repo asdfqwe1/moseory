@@ -22,7 +22,7 @@ public class MovingPlatform : MonoBehaviour
 
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         collision.transform.SetParent(transform);
         if (Vector2.Distance(transform.position, Points[i].position) < 0.1f)

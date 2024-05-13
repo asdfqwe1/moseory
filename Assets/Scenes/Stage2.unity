@@ -4260,12 +4260,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 200c98c30b2cccf4cbe693ae5ed11e6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player_pref: {fileID: 3257937327778306204, guid: f623300a4aa368d40bb69b2aba297566, type: 3}
   SavePointOBJ: {fileID: 6211330774129696837, guid: aeb8cf46c9fc35643ab1a211497b8a87, type: 3}
+  DebugRoom: 0
+  StartPoint: 0
   stageSavePoint:
   - {x: -13, y: -6}
   - {x: 13, y: 25}
+  - {x: 48, y: 32}
+  - {x: 83, y: 32}
   collisionSize: {x: 3, y: 1}
   collisionColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  Player: {fileID: 0}
 --- !u!4 &918208337
 Transform:
   m_ObjectHideFlags: 0
@@ -96716,14 +96722,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1679245641301985368, guid: f623300a4aa368d40bb69b2aba297566, type: 3}
-      propertyPath: speed
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1679245641301985368, guid: f623300a4aa368d40bb69b2aba297566, type: 3}
-      propertyPath: reviveWaitTime
-      value: 0.6
-      objectReference: {fileID: 0}
     - target: {fileID: 1831403734257266414, guid: f623300a4aa368d40bb69b2aba297566, type: 3}
       propertyPath: m_LocalPosition.x
       value: 164.55
@@ -96768,9 +96766,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 6759899644218389664, guid: f623300a4aa368d40bb69b2aba297566, type: 3}
-      propertyPath: m_Enabled
-      value: 0
+    - target: {fileID: 3257937327778306204, guid: f623300a4aa368d40bb69b2aba297566, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -96944,7 +96942,6 @@ GameObject:
   - component: {fileID: 2107167206}
   - component: {fileID: 2107167209}
   - component: {fileID: 2107167208}
-  - component: {fileID: 2107167210}
   m_Layer: 10
   m_Name: Thorn
   m_TagString: Untagged
@@ -97007,7 +97004,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -98801,18 +98798,6 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
---- !u!114 &2107167210
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2107167204}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a49f7f9567bff439b9abce27bf3869c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2108077149
 GameObject:
   m_ObjectHideFlags: 0
