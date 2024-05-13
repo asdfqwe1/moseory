@@ -93319,6 +93319,10 @@ PrefabInstance:
       propertyPath: speed
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 1679245641301985368, guid: f623300a4aa368d40bb69b2aba297566, type: 3}
+      propertyPath: reviveWaitTime
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 1831403734257266414, guid: f623300a4aa368d40bb69b2aba297566, type: 3}
       propertyPath: m_LocalPosition.x
       value: 81.04
@@ -93419,6 +93423,7 @@ GameObject:
   - component: {fileID: 2107167206}
   - component: {fileID: 2107167209}
   - component: {fileID: 2107167208}
+  - component: {fileID: 2107167210}
   m_Layer: 10
   m_Name: Thorn
   m_TagString: Untagged
@@ -95268,13 +95273,25 @@ TilemapCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
+--- !u!114 &2107167210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2107167204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a49f7f9567bff439b9abce27bf3869c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2108077149
 GameObject:
   m_ObjectHideFlags: 0
