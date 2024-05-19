@@ -5,37 +5,43 @@ using UnityEngine;
 
 public class DashCrystal : MonoBehaviour
 {
-    public GameObject crystalPrefab;
-    public List<Transform> spawnPoints;
+    private Vector2 spawnPosition; // 크리스탈의 초기 위치를 저장하는 변수
     private bool isRespawning = false;
 
-    private void Start()
+    void Start()
     {
-        SpawnCrystals();
+        // 크리스탈의 초기 위치 저장
+        spawnPosition = transform.position;
     }
 
-    private void SpawnCrystals()
-    {
-        foreach (Transform spawnPoint in spawnPoints)
-        {
-            // 스폰 포인트에서 크리스탈을 스폰함.
-            Instantiate(crystalPrefab, spawnPoint.position, Quaternion.identity);
-        }
-    }
-
-    public void RespawnCrystal(Vector3 respawnPosition, float respawnDelay)
+    public void RespawnCrystal()
     {
         if (!isRespawning)
         {
             isRespawning = true;
-            StartCoroutine(RespawnDelay(respawnPosition, respawnDelay));
+            StartCoroutine(RespawnDelay(spawnPosition));
         }
     }
 
-    private IEnumerator RespawnDelay(Vector3 respawnPosition, float respawnDelay)
+    public void RespawnCrystal(Vector2 respawnPosition)
     {
+        if (!isRespawning)
+        {
+            isRespawning = true;
+            StartCoroutine(RespawnDelay(respawnPosition));
+        }
+    }
+
+    IEnumerator RespawnDelay(Vector2 respawnPosition)
+    {
+        // 리스폰 딜레이 설정
+        float respawnDelay = 3f;
         yield return new WaitForSeconds(respawnDelay);
-        Instantiate(crystalPrefab, respawnPosition, Quaternion.identity);
+
+        // 크리스탈 리스폰
+        Instantiate(gameObject, respawnPosition, Quaternion.identity);
+
+        // 리스폰이 완료되었으므로 isRespawning 변수를 false로 설정
         isRespawning = false;
     }
 }

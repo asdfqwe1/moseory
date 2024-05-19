@@ -405,11 +405,6 @@ public class Player_C : MonoBehaviour
             isDashing = false;
             stamina = defaultStamina;
 
-            Vector3 respawnPosition = collision.transform.position;
-            float respawnDelay = 3f;
-
-            FindObjectOfType<DashCrystal>().RespawnCrystal(respawnPosition, respawnDelay);
-
             Destroy(collision.gameObject);
         }
     }
