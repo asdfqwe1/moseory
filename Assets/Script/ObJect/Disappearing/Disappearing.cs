@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class Disappearing : MonoBehaviour
 {
+    Animator mAnimator;
     public float disappearTime = 2f; // 발판이 사라지는 시간
 
     private bool isDisappearing = false; // 발판이 사라지는 중인지 여부
+
+    void Start()
+    {
+         mAnimator = GetComponent<Animator>();
+    }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -15,12 +21,14 @@ public class Disappearing : MonoBehaviour
             // 발판이 밟혔을 때 발판을 사라지게 함
             Invoke("Disappear", disappearTime);
             isDisappearing = true;
+            mAnimator.SetTrigger("hit");
         }
     }
 
     void Disappear()
     {
         // 발판을 비활성화하여 사라지게 함
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 }

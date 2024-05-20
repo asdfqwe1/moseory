@@ -10,7 +10,6 @@ public class MovingBlock : MonoBehaviour
 
     private Vector2 initialPosition; // 발판의 초기 위치
     private Vector2 destination; // 발판의 목적지
-    private float distanceMoved = 0f; // 발판이 이동한 거리
     private bool moving = false; // 발판이 움직이고 있는지 여부
 
     void Start()
@@ -29,7 +28,6 @@ public class MovingBlock : MonoBehaviour
             // 이동 속도 및 방향 설정
             float step = speed * Time.deltaTime;
             transform.position = Vector2.MoveTowards(transform.position, destination, step);
-            distanceMoved += step;
 
             // 목적지에 도달하면 멈추기
             if (Vector2.Distance(transform.position, destination) < 0.001f)
@@ -57,7 +55,6 @@ public class MovingBlock : MonoBehaviour
         {
             // 플레이어의 부모를 초기화하여 발판과의 부모-자식 관계 해제
             collision.transform.SetParent(null, true);
-            moving = false;
         }
     }
 }
