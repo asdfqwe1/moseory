@@ -5,6 +5,7 @@ using UnityEngine;
 public class Collision : MonoBehaviour
 {
     public LayerMask groundLayer;
+    public LayerMask oneWayLayer;
     public LayerMask thornLayer;
     [Header("Player Collision")]
     public float collisionRadius = 0.25f;
@@ -29,7 +30,9 @@ public class Collision : MonoBehaviour
     }
     private void Update()
     {
-        onGround = Physics2D.OverlapCircle((Vector2)transform.position + bottomOffset, collisionRadius, groundLayer);
+        if(Physics2D.OverlapCircle((Vector2)transform.position + bottomOffset, collisionRadius, groundLayer)||Physics2D.OverlapCircle((Vector2)transform.position + bottomOffset, collisionRadius, oneWayLayer)) onGround=true;
+        else onGround=false;
+        //onGround = Physics2D.OverlapCircle((Vector2)transform.position + bottomOffset, collisionRadius, groundLayer);
         onWall= Physics2D.OverlapCircle((Vector2)transform.position + rightOffset, collisionRadius, groundLayer)
             || Physics2D.OverlapCircle((Vector2)transform.position + leftOffset, collisionRadius, groundLayer);
         onRightWall = Physics2D.OverlapCircle((Vector2)transform.position + rightOffset, collisionRadius, groundLayer);
