@@ -194,15 +194,18 @@ public class Player_C : MonoBehaviour
 
         if (wallGrab && !isDashing && stamina > 0)
         {
+            float push=coll.onRightWall==true ? 0.05f : -0.05f;
             stamina -= Time.deltaTime;
 
             rb.gravityScale = 0;
             if (x > .2f || x < -.2f)
+            {
                 rb.velocity = new Vector2(rb.velocity.x, 0);
+            }
 
             float speedModifier = y > 0 ? .5f : 1;
 
-            rb.velocity = new Vector2(rb.velocity.x, y * (speed * speedModifier));
+            rb.velocity = new Vector2(rb.velocity.x+push, y * (speed * speedModifier));
         }
         else
         {
