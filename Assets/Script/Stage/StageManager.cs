@@ -31,6 +31,7 @@ public class StageManager : MonoBehaviour
     private Dictionary<int, Vector3> savePoints = new Dictionary<int, Vector3>();
     [SerializeField]
     private GameObject Player;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,6 +49,7 @@ public class StageManager : MonoBehaviour
             obj.GetComponent<StageBox>().setNum(dic.Key);
             Debug.Log("Dictionary: " + dic.Key +" | "+dic.Value);
         }
+
         //Find "Player" Object and replace start point
         if (GameObject.Find("Player"))
         {
@@ -57,6 +59,7 @@ public class StageManager : MonoBehaviour
         else Player = Instantiate(Player_pref, GetNowSave(), Quaternion.identity);
 
         if (DebugRoom) Player.transform.position = savePoints[StartPoint] + this.transform.position;
+
     }
     private void OnDrawGizmosSelected()
     { 

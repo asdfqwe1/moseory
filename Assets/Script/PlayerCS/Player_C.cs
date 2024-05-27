@@ -12,6 +12,7 @@ public class Player_C : MonoBehaviour
     [SerializeField]
     private StageManager stageManager;
     public DashCrystal dashCrystal;
+    public PrefabObjectManager prefabObjectManager;
 
     [Header("Movement")]
     [Tooltip("�̵� �ӵ�")]
@@ -54,6 +55,7 @@ public class Player_C : MonoBehaviour
     public ParticleSystem jumpParticle;
     public ParticleSystem wallJumpParticle;
     public ParticleSystem slideParticle;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -402,13 +404,18 @@ public class Player_C : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("crystal"))
+        // "Crystal" 레이어의 정수 값을 얻습니다.
+        int crystalLayer = LayerMask.NameToLayer("Crystal");
+
+        // 충돌한 객체의 레이어가 "Crystal" 레이어와 동일한지 확인합니다.
+        if (collision.gameObject.layer == crystalLayer)
         {
             hasDashed = false;
             isDashing = false;
             stamina = defaultStamina;
 
-            Destroy(collision.gameObject);
+            // 충돌한 객체를 파괴합니다.
+            collision.gameObject.SetActive(false);
         }
     }
 
@@ -419,6 +426,7 @@ public class Player_C : MonoBehaviour
 
     private void Revive(){
         this.transform.position=stageManager.GetNowSave();
+        RespawnPlayer();
         isDead = false;
     }
 
@@ -426,6 +434,11 @@ public class Player_C : MonoBehaviour
         Debug.Log("Get playerKillSwitch! IsDead status = "+isDead);
         if (isDead) return;
         StartCoroutine(DieAndRevive(reviveWaitTime));
+    }
+
+    public void RespawnPlayer()
+    {
+        prefabObjectManager.ResetToInitialState();
     }
 
     IEnumerator DieAndRevive(float waitTime)

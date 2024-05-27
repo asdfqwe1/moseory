@@ -10,7 +10,7 @@ public class MovingBlock : MonoBehaviour
 
     private Vector2 initialPosition; // 발판의 초기 위치
     private Vector2 destination; // 발판의 목적지
-    private bool moving = false; // 발판이 움직이고 있는지 여부
+    public bool moving = false; // 발판이 움직이고 있는지 여부
 
     void Start()
     {

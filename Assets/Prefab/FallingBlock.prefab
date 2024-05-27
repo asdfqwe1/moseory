@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 806329083268185230}
   m_Layer: 7
   m_Name: FallingBlock
-  m_TagString: Untagged
+  m_TagString: ManagedPrefab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
