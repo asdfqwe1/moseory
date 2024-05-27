@@ -11,6 +11,8 @@ public class StageManager : MonoBehaviour
 {
     public GameObject Player_pref;
     public GameObject SavePointOBJ;
+    [SerializeField]
+    private float y_Plus;
     [Header("★Debug Tool★")]
     [Tooltip("If you want to test the room, activate the check box")]
     public bool DebugRoom;
@@ -29,8 +31,12 @@ public class StageManager : MonoBehaviour
     [Header("SavePoint")]
     private int nowSave = 0;
     private Dictionary<int, Vector3> savePoints = new Dictionary<int, Vector3>();
+    private Dictionary<int,DialogSystem> dialogSystems = new Dictionary<int,DialogSystem>();
     [SerializeField]
     private GameObject Player;
+    [Space]
+    [SerializeField]
+    private DictionarySystem[] productionSystems;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,12 +46,21 @@ public class StageManager : MonoBehaviour
             savePoints.Add(count, new Vector3(pos.x,pos.y,0));
             count++;
         }
+        foreach (var pos in productionSystems)
+        {
+            dialogSystems.Add(pos.index, pos.dialogSystem);
+        }
         foreach (var dic in savePoints)
         {
             var obj = Instantiate(SavePointOBJ, this.transform);
+            var script=obj.GetComponent<StageBox>();
+            if (dialogSystems.ContainsKey(dic.Key))
+            {
+                script.dialog = dialogSystems[dic.Key];
+            }
             obj.transform.position = dic.Value+transform.position;
             obj.transform.localScale = collisionSize;
-            obj.GetComponent<StageBox>().setNum(dic.Key);
+            script.setNum(dic.Key);
             Debug.Log("Dictionary: " + dic.Key +" | "+dic.Value);
         }
         //Find "Player" Object and replace start point
@@ -56,7 +71,7 @@ public class StageManager : MonoBehaviour
         }
         else Player = Instantiate(Player_pref, GetNowSave(), Quaternion.identity);
 
-        if (DebugRoom) Player.transform.position = savePoints[StartPoint] + this.transform.position;
+        if (DebugRoom) Player.transform.position = savePoints[StartPoint] + this.transform.position + new Vector3(0,y_Plus,0);
     }
     private void OnDrawGizmosSelected()
     { 
@@ -78,11 +93,18 @@ public class StageManager : MonoBehaviour
     public Vector3 GetNowSave()
     {
         if(savePoints.ContainsKey(nowSave)){
-            return savePoints[nowSave]+this.transform.position;
+            return (savePoints[nowSave]+this.transform.position+new Vector3(0,y_Plus,0));
         }
         else{
             Debug.Log("Not matched Key");
             return Vector3.zero;
         }
     }
+}
+
+[System.Serializable]
+public struct DictionarySystem
+{
+    public int index;
+    public DialogSystem dialogSystem;
 }

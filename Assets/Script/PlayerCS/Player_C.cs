@@ -60,7 +60,7 @@ public class Player_C : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collision>();
         anim=GetComponentInChildren<PlayerAnimation>();
-        try{stageManager=GameObject.Find("StageManager").GetComponent<StageManager>();}catch(NullReferenceException ex){Debug.Log("No StageManager");}
+        try{stageManager=GameObject.Find("StageManager").GetComponent<StageManager>();}catch(NullReferenceException ex){Debug.Log("No StageManager: "+ex);}
 
         rb.gravityScale = gravityScale;
     }

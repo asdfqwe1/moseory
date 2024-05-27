@@ -47,7 +47,7 @@ public class DialogSystem : MonoBehaviour
                 isTypingEffect=false;
                 StopCoroutine("OnTypingText");
                 speakers[currentSpeakerIndex].textDialog.text=dialogs[currentDialogIndex].dialog;
-                try{speakers[currentSpeakerIndex].objectArrow.gameObject.SetActive(true);}catch(NullReferenceException ex){}
+                try{speakers[currentSpeakerIndex].objectArrow.gameObject.SetActive(true);}catch(NullReferenceException ex){ Debug.Log(ex); }
                 return false;
             }
             if(dialogs.Length>currentDialogIndex+1){
@@ -58,6 +58,7 @@ public class DialogSystem : MonoBehaviour
                     SetActiveObjects(speakers[i],false);
                     speakers[i].CharacterRenderer.gameObject.SetActive(false);
                 }
+                return true;
             }
         }
         return false;
@@ -91,6 +92,8 @@ public class DialogSystem : MonoBehaviour
         speaker.CharacterRenderer.color=color;
         }
         catch (NullReferenceException ex) {Debug.Log(ex);}
+
+        Debug.Log("setActive Obj: " + visible);
     }
     private IEnumerator OnTypingText(){
         int index=0;
@@ -101,7 +104,7 @@ public class DialogSystem : MonoBehaviour
             yield return new WaitForSeconds(typingSpeed);
         }
         isTypingEffect=false;
-        try {speakers[currentSpeakerIndex].objectArrow.gameObject.SetActive(true);} catch (NullReferenceException ex) { }
+        try {speakers[currentSpeakerIndex].objectArrow.gameObject.SetActive(true);} catch (NullReferenceException ex) { Debug.Log(ex); }
     }
 }
 
