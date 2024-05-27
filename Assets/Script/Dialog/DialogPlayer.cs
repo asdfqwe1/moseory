@@ -9,8 +9,8 @@ public class DialogPlayer : MonoBehaviour
     // Start is called before the first frame update
     private IEnumerator Start()
     {
-        for(int i=0;i<dialogSystems.Length;++i){
-            yield return new WaitUntil(()=> dialogSystems[i].UpdateDialog());
-        }
+        yield return new WaitUntil(() => dialogSystems[0].UpdateDialog());
+
+        yield return new WaitUntil(() => dialogSystems[1].UpdateDialog());
     }
 }
