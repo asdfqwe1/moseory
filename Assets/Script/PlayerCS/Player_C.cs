@@ -404,17 +404,15 @@ public class Player_C : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // "Crystal" 레이어의 정수 값을 얻습니다.
         int crystalLayer = LayerMask.NameToLayer("Crystal");
-
-        // 충돌한 객체의 레이어가 "Crystal" 레이어와 동일한지 확인합니다.
+      
         if (collision.gameObject.layer == crystalLayer)
         {
             hasDashed = false;
             isDashing = false;
             stamina = defaultStamina;
 
-            // 충돌한 객체를 파괴합니다.
+         
             collision.gameObject.SetActive(false);
         }
     }
