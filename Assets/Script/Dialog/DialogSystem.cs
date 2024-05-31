@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Reflection.Emit;
 
 //using Microsoft.Unity.VisualStudio.Editor;
@@ -21,6 +22,7 @@ public class DialogSystem : MonoBehaviour
     private bool isFirst;
     private int currentDialogIndex=-1;
     private int currentSpeakerIndex=0;
+    [SerializeField]
     private float typingSpeed=0.1f;
     [SerializeField]
     private bool isTypingEffect=false;
@@ -31,6 +33,8 @@ public class DialogSystem : MonoBehaviour
     }
 
     private void Setup(){
+        currentSpeakerIndex=0;
+        currentDialogIndex=-1;
         for(int i=0;i<speakers.Length;++i){
             SetActiveObjects(speakers[i],false);
             try {speakers[i].CharacterRenderer.gameObject.SetActive(true);} catch (NullReferenceException ex) {Debug.Log(ex);}
@@ -56,7 +60,7 @@ public class DialogSystem : MonoBehaviour
             else{
                 for(int i=0;i<speakers.Length;++i){
                     SetActiveObjects(speakers[i],false);
-                    speakers[i].CharacterRenderer.gameObject.SetActive(false);
+                    try{speakers[i].CharacterRenderer.gameObject.SetActive(false);}catch(NullReferenceException ex){Debug.Log(ex);}
                 }
                 return true;
             }
@@ -71,7 +75,7 @@ public class DialogSystem : MonoBehaviour
         SetActiveObjects(speakers[currentSpeakerIndex],true);
         try{
         speakers[currentSpeakerIndex].textName.text=dialogs[currentDialogIndex].name;
-        //speakers[currentSpeakerIndex].textDialog.text=dialogs[currentDialogIndex].dialog;
+        speakers[currentSpeakerIndex].textDialog.text=dialogs[currentDialogIndex].dialog;
         }
         catch (NullReferenceException ex) {Debug.Log(ex);}
         StartCoroutine("OnTypingText");
@@ -105,6 +109,9 @@ public class DialogSystem : MonoBehaviour
         }
         isTypingEffect=false;
         try {speakers[currentSpeakerIndex].objectArrow.gameObject.SetActive(true);} catch (NullReferenceException ex) { Debug.Log(ex); }
+    }
+    public void setIsFirst(){
+        isFirst=true;
     }
 }
 

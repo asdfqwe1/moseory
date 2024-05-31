@@ -9,8 +9,6 @@ public class Player_C : MonoBehaviour
     private Collision coll;
     private Rigidbody2D rb;
     private PlayerAnimation anim;
-    [SerializeField]
-    private StageManager stageManager;
     public DashCrystal dashCrystal;
     public PrefabObjectManager prefabObjectManager;
 
@@ -37,6 +35,7 @@ public class Player_C : MonoBehaviour
     public bool wallJumped;
     public bool canMove = true;
     public bool isDashing;
+    public bool isDialoging=false;
     [Space]
     private bool hasDashed;
     private bool groundTouch;
@@ -62,9 +61,9 @@ public class Player_C : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collision>();
         anim=GetComponentInChildren<PlayerAnimation>();
-        try{stageManager=GameObject.Find("StageManager").GetComponent<StageManager>();}catch(NullReferenceException ex){Debug.Log("No StageManager: "+ex);}
 
         rb.gravityScale = gravityScale;
+        GameManager.Instance.fadeManager.SetAnimSpeed("DieSpeed",reviveWaitTime);
     }
 
     // Update is called once per frame
@@ -73,107 +72,17 @@ public class Player_C : MonoBehaviour
         if (coll.onHit)
         {
             KillSwitch();
-            return;
         }
 
-        float x = Input.GetAxis("Horizontal");
-        float y = Input.GetAxis("Vertical");
-        float xRaw = Input.GetAxisRaw("Horizontal");
-        float yRaw = Input.GetAxisRaw("Vertical");
+        float x = isDialoging == false ? Input.GetAxis("Horizontal") : 0f;
+        float y = isDialoging == false ? Input.GetAxis("Vertical") : 0f;
+        float xRaw = isDialoging == false ? Input.GetAxisRaw("Horizontal") : 0f;
+        float yRaw = isDialoging == false ? Input.GetAxisRaw("Vertical") : 0f;
         Vector2 dir = new Vector2(x,y);
         Walk(dir);
 
         anim.SetHorizontalMovement(x, y, rb.velocity.y);
 
-        /*
-        //wallWalk
-        if(coll.onWall&&Input.GetButton("Fire2")&&canMove)
-        {
-            if (side != coll.wallSide) anim.Flip(side * -1);
-            wallGrab = true;
-            wallSlide = false;
-        }
-
-        if(Input.GetButton("Fire2")||!coll.onWall||!canMove)
-        {
-            wallGrab = false;
-            wallSlide = false;
-        }
-        
-        if(coll.onGround&&!isDashing)
-        {
-            wallJumped = false;
-            GetComponent<Betterjump>().enabled = true;
-        }
-
-        if (wallGrab&&!isDashing)
-        {
-            rb.gravityScale = 0;
-            if (x > .2f || x < -.2f) rb.velocity = new Vector2(rb.velocity.x, 0);
-            float speedModifier = y > 0 ? .5f : 1f;
-            rb.velocity=new Vector2(rb.velocity.x, y*(speed*speedModifier));
-        }
-        else
-        {
-            rb.gravityScale = gravityScale;
-        }
-
-        if (coll.onWall && !coll.onGround)
-        {
-            if (x!=0 && !wallGrab)
-            {
-                wallSlide = true;
-                WallSlide();
-            }
-        }
-
-        if (!coll.onWall || coll.onGround)
-        {
-            wallSlide=false;
-        }
-        //jump
-        if (Input.GetButtonDown("Fire3"))
-        {
-            anim.Trigger("Jump");
-
-            if (coll.onGround)
-            {
-                Jump(Vector2.up, false);
-            }
-            if (coll.onWall && !coll.onGround)
-            {
-                WallJump();
-            }
-        }
-        //dash
-        if (Input.GetButtonDown("Fire1") && !hasDashed)
-        {
-            if(xRaw!=0||yRaw!=0) Dash(xRaw,yRaw);
-        }
-        //���� ��Ҵ���?
-        if (coll.onGround && !groundTouch)
-        {
-            GroundTouch();
-            groundTouch = true;
-        }
-        if(!coll.onGround&&groundTouch)
-        {
-            groundTouch = false;
-        }
-
-        if (wallGrab || wallSlide || !canMove) return;
-
-        if (x > 0)
-        {
-            side = 1;
-            anim.Flip(side);
-        }
-        if (x < 0)
-        {
-            side = -1;
-            anim.Flip(side);
-        }
-        */
         if (coll.onWall && Input.GetButton("Fire2") && canMove)
         {
             if (side != coll.wallSide)
@@ -226,7 +135,7 @@ public class Player_C : MonoBehaviour
         if (!coll.onWall || coll.onGround)
             wallSlide = false;
 
-        if (Input.GetButtonDown("Fire3"))
+        if (Input.GetButtonDown("Fire3")&&!isDialoging)
         {
             anim.Trigger("Jump");
 
@@ -420,18 +329,20 @@ public class Player_C : MonoBehaviour
     private void Die(){
         isDead = true;
         anim.Trigger("isDead");
+        GameManager.Instance.fadeManager.SetTrigger("Die");
     }
 
     private void Revive(){
-        this.transform.position=stageManager.GetNowSave();
-        RespawnPlayer();
+        this.transform.position=GameManager.Instance.stageManager.GetNowSave();
+        this.gameObject.transform.SetParent(null);
+        try{RespawnPlayer();}catch(NullReferenceException ex){var e=ex;}
         isDead = false;
     }
 
     public void KillSwitch(){
         Debug.Log("Get playerKillSwitch! IsDead status = "+isDead);
         if (isDead) return;
-        StartCoroutine(DieAndRevive(reviveWaitTime));
+        StartCoroutine(this.DieAndRevive(reviveWaitTime));
     }
 
     public void RespawnPlayer()
@@ -442,7 +353,6 @@ public class Player_C : MonoBehaviour
     IEnumerator DieAndRevive(float waitTime)
     {
         Die();
-        yield return new WaitForSeconds(waitTime/2);
         yield return new WaitForSeconds(waitTime/2);
         Revive();
     }

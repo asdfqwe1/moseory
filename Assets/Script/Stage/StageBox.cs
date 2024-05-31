@@ -35,12 +35,14 @@ public class StageBox : MonoBehaviour
         if(collision.gameObject.tag == "Player" && !productEnter && dialog)
         {
             productEnter = true;
-            StartCoroutine(this.StartDialog());
+            StartCoroutine(this.StartDialog(collision));
         }
     }
 
-    private IEnumerator StartDialog()
-    {
+    private IEnumerator StartDialog(Collider2D collision)
+    {     
+        collision.gameObject.GetComponent<Player_C>().isDialoging=true;
         yield return new WaitUntil(() => this.dialog.UpdateDialog());
+        collision.gameObject.GetComponent<Player_C>().isDialoging=false;
     }
 }

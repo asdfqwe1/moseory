@@ -105,6 +105,7 @@ public class StageManager : MonoBehaviour
 [System.Serializable]
 public struct DictionarySystem
 {
+    [Tooltip("RoomIndex")]
     public int index;
     public DialogSystem dialogSystem;
 }
