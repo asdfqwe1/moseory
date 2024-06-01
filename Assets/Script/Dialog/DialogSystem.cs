@@ -102,7 +102,7 @@ public class DialogSystem : MonoBehaviour
     private IEnumerator OnTypingText(){
         int index=0;
         isTypingEffect=true;
-        while(index<dialogs[currentDialogIndex].dialog.Length){
+        while(index<=dialogs[currentDialogIndex].dialog.Length){
             speakers[currentSpeakerIndex].textDialog.text=dialogs[currentDialogIndex].dialog.Substring(0,index);
             index++;
             yield return new WaitForSeconds(typingSpeed);

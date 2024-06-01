@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class FadeManager : MonoBehaviour
 {
+    [SerializeField]
     private Animator fade;
-
     void Start(){
-        fade=GameObject.Find("FadeCanvas").GetComponent<Animator>();
+        fade=this.GetComponent<Animator>();
     }
 
     public void SetTrigger(string tg){

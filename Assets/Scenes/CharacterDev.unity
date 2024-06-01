@@ -6620,7 +6620,7 @@ Tilemap:
       - {fileID: -1571013036, guid: 1d253019c0bb3af44adc673152bd6a26, type: 3}
       - {fileID: 691621461, guid: 1d253019c0bb3af44adc673152bd6a26, type: 3}
       - {fileID: 955705360, guid: 1d253019c0bb3af44adc673152bd6a26, type: 3}
-      m_AnimationSpeed: 5.8253927
+      m_AnimationSpeed: 5.961725
       m_AnimationTimeOffset: 0
       m_Flags: 0
   m_TileAssetArray:

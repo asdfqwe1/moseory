@@ -5,6 +5,8 @@ using UnityEngine;
 public class StageBox : MonoBehaviour
 {
     public DialogSystem dialog;
+    public bool isFade;
+    public float waitTime;
     [SerializeField]
     private int platform_Num;
     [SerializeField]
@@ -44,5 +46,7 @@ public class StageBox : MonoBehaviour
         collision.gameObject.GetComponent<Player_C>().isDialoging=true;
         yield return new WaitUntil(() => this.dialog.UpdateDialog());
         collision.gameObject.GetComponent<Player_C>().isDialoging=false;
+        yield return new WaitForSeconds(waitTime);
+        if(isFade) GameManager.Instance.fadeManager.SetTrigger("Fade");
     }
 }
