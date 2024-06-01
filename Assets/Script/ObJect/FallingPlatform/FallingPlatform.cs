@@ -12,6 +12,7 @@ public class FallingPlatform : MonoBehaviour
 
     private IEnumerator currentCoroutine;
 
+
     void Start()
     {
         dePos = transform.position;
@@ -44,15 +45,6 @@ public class FallingPlatform : MonoBehaviour
         rb.bodyType = RigidbodyType2D.Static;
     }
 
-    public void ResetPlatform()
-    {
-        if (currentCoroutine != null)
-        {
-            StopCoroutine(currentCoroutine);
-            currentCoroutine = null;
-        }
-        transform.position = dePos;
-        SetStatic();
-    }
+  
 }
 

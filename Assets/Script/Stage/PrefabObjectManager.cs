@@ -64,10 +64,12 @@ public class PrefabObjectManager : MonoBehaviour
                 {
                     rb2D.bodyType = RigidbodyType2D.Static;
                 }
-                FallingPlatform fallingPlatform = obj.GetComponent<FallingPlatform>();
-                if (fallingPlatform != null)
+
+                Disappearing disappearing = obj.GetComponent<Disappearing>();
+
+                if(disappearing != null)
                 {
-                    fallingPlatform.ResetPlatform();
+                    disappearing.isDisappearing = false;
                 }
 
             }

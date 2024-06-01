@@ -7,7 +7,7 @@ public class Disappearing : MonoBehaviour
     Animator mAnimator;
     public float disappearTime = 2f; // 발판이 사라지는 시간
 
-    private bool isDisappearing = false; // 발판이 사라지는 중인지 여부
+    public bool isDisappearing = false; // 발판이 사라지는 중인지 여부
 
     void Start()
     {
@@ -26,9 +26,7 @@ public class Disappearing : MonoBehaviour
     }
 
     void Disappear()
-    {
-        // 발판을 비활성화하여 사라지게 함
-        //gameObject.SetActive(false);
-        Destroy(gameObject);
+    {  
+        gameObject.SetActive(false);
     }
 }
