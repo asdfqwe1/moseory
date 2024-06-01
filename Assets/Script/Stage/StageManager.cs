@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -61,6 +62,11 @@ public class StageManager : MonoBehaviour
             obj.transform.position = dic.Value+transform.position;
             obj.transform.localScale = collisionSize;
             script.setNum(dic.Key);
+            foreach (var pro in productionSystems){
+                if(pro.index==script.getNum()) {
+                    script.isFade=pro.isFade;
+                    script.waitTime=pro.waitTime;}
+            }
             Debug.Log("Dictionary: " + dic.Key +" | "+dic.Value);
         }
         //Find "Player" Object and replace start point
@@ -107,5 +113,7 @@ public struct DictionarySystem
 {
     [Tooltip("RoomIndex")]
     public int index;
+    public bool isFade;
+    public float waitTime;
     public DialogSystem dialogSystem;
 }

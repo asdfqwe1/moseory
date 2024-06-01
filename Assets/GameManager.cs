@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -28,12 +29,12 @@ public class GameManager : MonoBehaviour
         else if(_instance!=this){
             Destroy(gameObject);
         }
-        DontDestroyOnLoad(gameObject);
 
         if(!stageManager)stageManager=GameObject.FindObjectOfType<StageManager>();
         if(!fadeManager)fadeManager=GameManager.FindObjectOfType<FadeManager>();
     }
 
-    private void Start(){
+    public void NextScene(){
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
     }
 }

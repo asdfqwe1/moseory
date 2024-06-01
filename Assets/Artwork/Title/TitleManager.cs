@@ -63,7 +63,5 @@ public class TitleManager : MonoBehaviour
         t_Mountain.position=Vector2.Lerp(t_Mountain.position,new Vector2(positions[0].x+(t_Mountain_Max*p.x),positions[0].y+(t_Mountain_Max*p.y)),Time.deltaTime);
         t_Trees.position=Vector2.Lerp(t_Trees.position,new Vector2(positions[0].x+(t_Trees_Max*p.x),positions[0].y+(t_Trees_Max*p.y)),Time.deltaTime);
         t_Player.position=Vector2.Lerp(t_Player.position,new Vector2(positions[0].x+(t_Player_Max*p.x),positions[0].y+(t_Player_Max*p.y)),Time.deltaTime);
-
-
     }
 }
