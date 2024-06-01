@@ -58,6 +58,18 @@ public class PrefabObjectManager : MonoBehaviour
                 {
                     movingBlock.moving = false;
                 }
+
+                Rigidbody2D rb2D = obj.GetComponent<Rigidbody2D>();
+                if (rb2D != null)
+                {
+                    rb2D.bodyType = RigidbodyType2D.Static;
+                }
+                FallingPlatform fallingPlatform = obj.GetComponent<FallingPlatform>();
+                if (fallingPlatform != null)
+                {
+                    fallingPlatform.ResetPlatform();
+                }
+
             }
         }
     }

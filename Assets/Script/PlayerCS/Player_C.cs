@@ -324,6 +324,13 @@ public class Player_C : MonoBehaviour
          
             collision.gameObject.SetActive(false);
         }
+
+        if (collision.gameObject.CompareTag("DeadZone"))
+        {
+            StartCoroutine(this.DieAndRevive(reviveWaitTime));
+        }
+
+
     }
 
     private void Die(){

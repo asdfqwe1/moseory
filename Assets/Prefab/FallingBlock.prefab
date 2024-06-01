@@ -99,8 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fac438ee27133af47b8a37d77f0eb92d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Delay: 3
-  RespawnTime: 5
+  Delay: 2
+  RespawnTime: 0
 --- !u!50 &3553736798123969414
 Rigidbody2D:
   serializedVersion: 4

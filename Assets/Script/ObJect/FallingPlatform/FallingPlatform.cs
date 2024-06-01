@@ -2,26 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fallingplatform : MonoBehaviour
+public class FallingPlatform : MonoBehaviour
 {
     Rigidbody2D rb;
     Vector2 dePos;
     Collider2D pcollider;
 
-    [SerializeField] float Delay, RespawnTime;
+    [SerializeField] float Delay;
+
+    private IEnumerator currentCoroutine;
 
     void Start()
     {
         dePos = transform.position;
         rb = GetComponent<Rigidbody2D>();
-        pcollider = GetComponent<Collider2D>(); // 콜라이더 컴포넌트 가져오기
+        pcollider = GetComponent<Collider2D>();
+        SetStatic();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            StartCoroutine(Fall());
+            if (currentCoroutine != null)
+            {
+                StopCoroutine(currentCoroutine);
+            }
+            currentCoroutine = Fall();
+            StartCoroutine(currentCoroutine);
         }
     }
 
@@ -29,16 +37,22 @@ public class Fallingplatform : MonoBehaviour
     {
         yield return new WaitForSeconds(Delay);
         rb.bodyType = RigidbodyType2D.Dynamic;
-        pcollider.enabled = false; // 충돌 판정 비활성화
-        yield return new WaitForSeconds(RespawnTime);
-        Reset();
     }
 
-    private void Reset()
+    private void SetStatic()
     {
         rb.bodyType = RigidbodyType2D.Static;
-        transform.position = dePos;
-        pcollider.enabled = true; // 충돌 판정 활성화
     }
-}                           
+
+    public void ResetPlatform()
+    {
+        if (currentCoroutine != null)
+        {
+            StopCoroutine(currentCoroutine);
+            currentCoroutine = null;
+        }
+        transform.position = dePos;
+        SetStatic();
+    }
+}
 
