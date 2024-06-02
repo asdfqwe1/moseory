@@ -11,11 +11,13 @@ public class MovingBlock : MonoBehaviour
     private Vector2 initialPosition; // 발판의 초기 위치
     private Vector2 destination; // 발판의 목적지
     public bool moving = false; // 발판이 움직이고 있는지 여부
+    private AudioSource audioSource;
 
     void Start()
     {
         initialPosition = transform.position;
         destination = initialPosition + direction.normalized * distanceToMove;
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -36,6 +38,10 @@ public class MovingBlock : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            if (moving == false)
+            {
+                audioSource.Play();
+            }
             collision.transform.SetParent(transform, true);
             moving = true;
         }
