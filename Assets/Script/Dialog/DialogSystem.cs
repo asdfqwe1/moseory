@@ -105,7 +105,7 @@ public class DialogSystem : MonoBehaviour
 
         try{
         Color color=speaker.CharacterRenderer.color;
-        color.a=visible==true?1:0.2f;
+        color.a=visible==true?1:0f;
         speaker.CharacterRenderer.color=color;
         }
         catch (NullReferenceException ex) {Debug.Log(ex);}

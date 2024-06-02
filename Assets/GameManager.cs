@@ -39,7 +39,8 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator nextScene(float t){
         yield return new WaitForSeconds(t);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+        if(SceneManager.GetActiveScene().buildIndex!=3)SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+        else { SceneManager.LoadScene(0); }
 
     }
 }
