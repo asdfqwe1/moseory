@@ -18,7 +18,6 @@ public class PrefabObjectManager : MonoBehaviour
 
     void Start()
     {
-
         foreach (var obj in GameObject.FindGameObjectsWithTag(managedObjectTag))
         {
             SaveInitialState(obj);
