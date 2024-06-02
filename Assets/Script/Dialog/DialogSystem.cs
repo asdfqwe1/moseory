@@ -26,6 +26,15 @@ public class DialogSystem : MonoBehaviour
     private float typingSpeed=0.1f;
     [SerializeField]
     private bool isTypingEffect=false;
+    [Space]
+    [SerializeField]
+    private bool isPlayMusic;
+    [SerializeField]
+    private SoundType soundType;
+    [SerializeField]
+    private bool isLoop;
+    [SerializeField]
+    private string musicName;
 
     private void Awake()
     {
@@ -61,6 +70,10 @@ public class DialogSystem : MonoBehaviour
                 for(int i=0;i<speakers.Length;++i){
                     SetActiveObjects(speakers[i],false);
                     try{speakers[i].CharacterRenderer.gameObject.SetActive(false);}catch(NullReferenceException ex){Debug.Log(ex);}
+                }
+                if(isPlayMusic){
+                    AudioManager.Instance.PlaySound(musicName,0,isLoop,soundType);
+                    isPlayMusic=false;
                 }
                 return true;
             }

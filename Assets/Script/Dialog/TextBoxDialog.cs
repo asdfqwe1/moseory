@@ -27,6 +27,6 @@ public class TextBoxDialog : MonoBehaviour
         if(isLast) {
             GameManager.Instance.fadeManager.SetTrigger("Fade");
             yield return new WaitForSeconds(waitTime);
-            GameManager.Instance.NextScene();}
+            GameManager.Instance.NextScene(0f);}
     }
 }

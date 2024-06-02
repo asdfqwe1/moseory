@@ -41,6 +41,7 @@ public class Player_C : MonoBehaviour
     private bool groundTouch;
     private float stamina;
     private bool isDead;
+    private bool isSlide;
     [Header("Scale")]
     public float gravityScale = 3f;
     public float wallJumpToY;
@@ -73,6 +74,7 @@ public class Player_C : MonoBehaviour
         {
             KillSwitch();
         }
+        if (!wallSlide) {AudioManager.Instance.StopLoopSound("SlideL"); isSlide=false;}
 
         float x = isDialoging == false ? Input.GetAxis("Horizontal") : 0f;
         float y = isDialoging == false ? Input.GetAxis("Vertical") : 0f;
@@ -132,8 +134,9 @@ public class Player_C : MonoBehaviour
             }
         }
 
-        if (!coll.onWall || coll.onGround)
+        if (!coll.onWall || coll.onGround){
             wallSlide = false;
+        }
 
         if (Input.GetButtonDown("Fire3")&&!isDialoging)
         {
@@ -196,6 +199,7 @@ public class Player_C : MonoBehaviour
 
     private void Dash(float x, float y)
     {
+        AudioManager.Instance.PlaySound("Dash");
         hasDashed = true;
 
         anim.Trigger("Dash");
@@ -216,6 +220,7 @@ public class Player_C : MonoBehaviour
         rb.velocity += dir * jumpForce;
 
         particle.Play();
+        AudioManager.Instance.PlaySound("Jump");
     }
 
     private void WallJump()
@@ -252,6 +257,11 @@ public class Player_C : MonoBehaviour
         float push=pushingWall ? 0 : rb.velocity.x;
 
         rb.velocity = new Vector2(push, -slideSpeed);
+        //if(!AudioManager.Instance.FindPlayingSound("WallSlide")) AudioManager.Instance.PlaySound("WallSlide");
+        if(!isSlide){
+            AudioManager.Instance.PlaySound("SlideL",0,true,SoundType.PLAYER);
+            isSlide=true;
+        }
     }
     private void GroundTouch()
     {
@@ -259,6 +269,7 @@ public class Player_C : MonoBehaviour
         isDashing = false;
         stamina = defaultStamina;
         jumpParticle.Play();
+        AudioManager.Instance.PlaySound("Jump");
     }
     IEnumerator DisableMovement(float time)
     {

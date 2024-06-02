@@ -6,6 +6,7 @@ public class StageBox : MonoBehaviour
 {
     public DialogSystem dialog;
     public bool isFade;
+    //public bool isPlayMusic;
     public float waitTime;
     [SerializeField]
     private int platform_Num;
@@ -48,5 +49,6 @@ public class StageBox : MonoBehaviour
         collision.gameObject.GetComponent<Player_C>().isDialoging=false;
         yield return new WaitForSeconds(waitTime);
         if(isFade) GameManager.Instance.fadeManager.SetTrigger("Fade");
+        //if(isPlayMusic) AudioManager.Instance.PlaySound("Back Ground",0,true,SoundType.BGM);
     }
 }

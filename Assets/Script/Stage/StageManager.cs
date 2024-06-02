@@ -65,6 +65,7 @@ public class StageManager : MonoBehaviour
             foreach (var pro in productionSystems){
                 if(pro.index==script.getNum()) {
                     script.isFade=pro.isFade;
+                    //script.isPlayMusic=pro.isPlayMusic;
                     script.waitTime=pro.waitTime;}
             }
             Debug.Log("Dictionary: " + dic.Key +" | "+dic.Value);
@@ -114,6 +115,7 @@ public struct DictionarySystem
     [Tooltip("RoomIndex")]
     public int index;
     public bool isFade;
+    //public bool isPlayMusic;
     public float waitTime;
     public DialogSystem dialogSystem;
 }

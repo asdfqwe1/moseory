@@ -34,7 +34,12 @@ public class GameManager : MonoBehaviour
         if(!fadeManager)fadeManager=GameManager.FindObjectOfType<FadeManager>();
     }
 
-    public void NextScene(){
+    public void NextScene(float t){
+        StartCoroutine(nextScene(t));
+    }
+    IEnumerator nextScene(float t){
+        yield return new WaitForSeconds(t);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+
     }
 }
