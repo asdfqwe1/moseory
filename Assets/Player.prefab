@@ -9865,7 +9865,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dashCrystal: {fileID: 0}
   prefabObjectManager: {fileID: 0}
-  audioSource: {fileID: 0}
   speed: 7
   jumpForce: 15
   slideSpeed: 5
@@ -9978,7 +9977,7 @@ AudioSource:
   m_GameObject: {fileID: 3257937327778306204}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -6678882415627548482, guid: 1ee1459d26c5f4e96bdb10f198f5fd55, type: 2}
   m_audioClip: {fileID: 8300000, guid: 423578ae4349f164eafebdc36629abfe, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
