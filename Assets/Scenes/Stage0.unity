@@ -29062,6 +29062,10 @@ MonoBehaviour:
   isFirst: 1
   typingSpeed: 0.1
   isTypingEffect: 0
+  isPlayMusic: 0
+  soundType: 0
+  isLoop: 0
+  musicName: 
 --- !u!1 &1533004140
 GameObject:
   m_ObjectHideFlags: 0
@@ -30852,6 +30856,10 @@ MonoBehaviour:
   isFirst: 1
   typingSpeed: 0.1
   isTypingEffect: 1
+  isPlayMusic: 0
+  soundType: 0
+  isLoop: 0
+  musicName: 
 --- !u!1 &2070866873
 GameObject:
   m_ObjectHideFlags: 0
@@ -30910,6 +30918,10 @@ MonoBehaviour:
   isFirst: 1
   typingSpeed: 0.1
   isTypingEffect: 1
+  isPlayMusic: 0
+  soundType: 0
+  isLoop: 0
+  musicName: 
 --- !u!1 &2101845355
 GameObject:
   m_ObjectHideFlags: 0
@@ -30952,7 +30964,6 @@ MonoBehaviour:
   productionSystems:
   - index: 0
     isFade: 1
-    isPlayMusic: 1
     waitTime: 0
     dialogSystem: {fileID: 2114783913}
 --- !u!4 &2101845357
@@ -31140,6 +31151,10 @@ MonoBehaviour:
   isFirst: 1
   typingSpeed: 0.05
   isTypingEffect: 1
+  isPlayMusic: 1
+  soundType: 0
+  isLoop: 1
+  musicName: Back Ground
 --- !u!4 &2114783914
 Transform:
   m_ObjectHideFlags: 0
