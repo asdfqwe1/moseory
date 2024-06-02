@@ -7,6 +7,7 @@ public class FallingPlatform : MonoBehaviour
     Rigidbody2D rb;
     Vector2 dePos;
     Collider2D pcollider;
+    AudioSource audioSource;
 
     [SerializeField] float Delay;
 
@@ -18,6 +19,7 @@ public class FallingPlatform : MonoBehaviour
         dePos = transform.position;
         rb = GetComponent<Rigidbody2D>();
         pcollider = GetComponent<Collider2D>();
+        audioSource = GetComponent<AudioSource>();
         SetStatic();
     }
 
@@ -37,6 +39,10 @@ public class FallingPlatform : MonoBehaviour
     private IEnumerator Fall()
     {
         yield return new WaitForSeconds(Delay);
+        if (rb.bodyType == RigidbodyType2D.Static)
+        {
+            audioSource.Play();
+        }
         rb.bodyType = RigidbodyType2D.Dynamic;
     }
 

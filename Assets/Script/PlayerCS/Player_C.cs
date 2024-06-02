@@ -11,6 +11,7 @@ public class Player_C : MonoBehaviour
     private PlayerAnimation anim;
     public DashCrystal dashCrystal;
     public PrefabObjectManager prefabObjectManager;
+    private AudioSource audioSource;
 
     [Header("Movement")]
     [Tooltip("�̵� �ӵ�")]
@@ -62,6 +63,7 @@ public class Player_C : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collision>();
         anim=GetComponentInChildren<PlayerAnimation>();
+        audioSource = GetComponent<AudioSource>();
 
         rb.gravityScale = gravityScale;
         GameManager.Instance.fadeManager.SetAnimSpeed("DieSpeed",reviveWaitTime);
@@ -332,7 +334,7 @@ public class Player_C : MonoBehaviour
             isDashing = false;
             stamina = defaultStamina;
 
-         
+            audioSource.Play();
             collision.gameObject.SetActive(false);
         }
 
@@ -374,4 +376,5 @@ public class Player_C : MonoBehaviour
         yield return new WaitForSeconds(waitTime/2);
         Revive();
     }
+
 }
