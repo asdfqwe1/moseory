@@ -71,6 +71,13 @@ public class PrefabObjectManager : MonoBehaviour
                     disappearing.isDisappearing = false;
                 }
 
+                FakeTrigger fakeTrigger = obj.GetComponent<FakeTrigger>();
+                
+                if(fakeTrigger != null)
+                {
+                   fakeTrigger.ResetToInitialState();
+                }
+
             }
         }
     }

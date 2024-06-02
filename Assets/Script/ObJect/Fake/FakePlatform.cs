@@ -7,7 +7,7 @@ public class FakePlatform : MonoBehaviour
     [SerializeField] float speed, moveDistance; // 블록의 이동 속도
     public bool moveRight = true; // 블록의 이동 방향
 
-    private Vector3 startPosition; // 블록의 시작 위치
+    public Vector3 startPosition; // 블록의 시작 위치
     private float movedDistance = 0f; // 블록이 이동한 거리
 
     void Start()
@@ -17,7 +17,7 @@ public class FakePlatform : MonoBehaviour
 
     void Update()
     {
-        // 블록을 이동하는 부분
+
         if (movedDistance < moveDistance)
         {
             float movement = speed * Time.deltaTime;
@@ -35,5 +35,12 @@ public class FakePlatform : MonoBehaviour
             }
             movedDistance += movement;
         }
+
+    }
+
+    public void ResetPlatform()
+    {
+        transform.position = startPosition;
+        movedDistance = 0f;
     }
 }
