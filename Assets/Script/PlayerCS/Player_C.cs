@@ -340,7 +340,7 @@ public class Player_C : MonoBehaviour
 
         if (collision.gameObject.CompareTag("DeadZone"))
         {
-            StartCoroutine(this.DieAndRevive(reviveWaitTime));
+            KillSwitch();
         }
 
 
