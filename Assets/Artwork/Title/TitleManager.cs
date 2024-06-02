@@ -48,7 +48,7 @@ public class TitleManager : MonoBehaviour
         Debug.Log(t_Mountain_Max+" "+t_Trees_Max+" "+t_Player_Max);
         //Mouse Lock
         Cursor.lockState=CursorLockMode.Confined;
-        AudioManager.Instance.PlaySound("Title Sound",0,true,SoundType.BGM);
+        //AudioManager.Instance.PlaySound("Title Sound",0,true,SoundType.BGM);
     }
 
     void Update(){
