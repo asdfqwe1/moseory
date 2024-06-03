@@ -21,9 +21,6 @@ public class FakeTrigger : MonoBehaviour
         block1InitialPosition = block1.transform.position;
         block2InitialPosition = block2.transform.position;
 
-        block1Movement.enabled = false;
-        block2Movement.enabled = false;
-
         block1Movement.moveRight = false;
 
     }
