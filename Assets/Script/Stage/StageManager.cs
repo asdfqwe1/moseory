@@ -94,7 +94,8 @@ public class StageManager : MonoBehaviour
     }
     public void SavePointUpdate(int v)
     {
-        nowSave = v > nowSave ? v : nowSave;
+        //nowSave = v > nowSave ? v : nowSave;
+        nowSave = v;
     }
 
     public Vector3 GetNowSave()

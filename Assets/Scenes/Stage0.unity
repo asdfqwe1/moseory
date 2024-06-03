@@ -261,6 +261,72 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 71227791}
   m_CullTransparentMesh: 1
+--- !u!1001 &203610147
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1533004141}
+    m_Modifications:
+    - target: {fileID: 4058658043371810777, guid: 5b036172c7fc84e07bcafd933f1647cf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 22.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4058658043371810777, guid: 5b036172c7fc84e07bcafd933f1647cf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4058658043371810777, guid: 5b036172c7fc84e07bcafd933f1647cf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4058658043371810777, guid: 5b036172c7fc84e07bcafd933f1647cf, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4058658043371810777, guid: 5b036172c7fc84e07bcafd933f1647cf, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4058658043371810777, guid: 5b036172c7fc84e07bcafd933f1647cf, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4058658043371810777, guid: 5b036172c7fc84e07bcafd933f1647cf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4058658043371810777, guid: 5b036172c7fc84e07bcafd933f1647cf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4058658043371810777, guid: 5b036172c7fc84e07bcafd933f1647cf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4058658043371810777, guid: 5b036172c7fc84e07bcafd933f1647cf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113827290099740377, guid: 5b036172c7fc84e07bcafd933f1647cf, type: 3}
+      propertyPath: m_Name
+      value: TextBoxColl
+      objectReference: {fileID: 0}
+    - target: {fileID: 7185560886505546138, guid: 5b036172c7fc84e07bcafd933f1647cf, type: 3}
+      propertyPath: dialogSystem
+      value: 
+      objectReference: {fileID: 2070866875}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5b036172c7fc84e07bcafd933f1647cf, type: 3}
+--- !u!4 &203610148 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4058658043371810777, guid: 5b036172c7fc84e07bcafd933f1647cf, type: 3}
+  m_PrefabInstance: {fileID: 203610147}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &266983862
 GameObject:
   m_ObjectHideFlags: 0
@@ -5214,6 +5280,42 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1896697863724971351, guid: ee887cb26c9b04c4796d275753766e33, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3033875167578768205, guid: ee887cb26c9b04c4796d275753766e33, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5767865157793892878, guid: ee887cb26c9b04c4796d275753766e33, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5767865157793892878, guid: ee887cb26c9b04c4796d275753766e33, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5767865157793892878, guid: ee887cb26c9b04c4796d275753766e33, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -17
+      objectReference: {fileID: 0}
+    - target: {fileID: 7543960467553476229, guid: ee887cb26c9b04c4796d275753766e33, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7543960467553476229, guid: ee887cb26c9b04c4796d275753766e33, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7672062081706458241, guid: ee887cb26c9b04c4796d275753766e33, type: 3}
+      propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7910050978693674025, guid: ee887cb26c9b04c4796d275753766e33, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7910050978693674025, guid: ee887cb26c9b04c4796d275753766e33, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8013990699480718204, guid: ee887cb26c9b04c4796d275753766e33, type: 3}
@@ -39614,8 +39716,8 @@ MonoBehaviour:
   dialogs:
   - SpeakerIndex: 0
     name: 
-    dialog: "Z\uC640 X\uB97C \uD65C\uC6A9\uD574 \uC810\uD504, \uBCBD\uC744 \uC7A1\uC744
-      \uC218 \uC788\uC2B5\uB2C8\uB2E4."
+    dialog: "C\uC640 Z\uB97C \uD65C\uC6A9\uD574 \uC810\uD504, \uB300\uC26C\uB97C
+      \uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
   isAutoStart: 1
   isFirst: 1
   typingSpeed: 0.1
@@ -39657,6 +39759,7 @@ Transform:
   m_Children:
   - {fileID: 1140510600}
   - {fileID: 2058870771}
+  - {fileID: 203610148}
   m_Father: {fileID: 1100605810}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!483693784 &1533004144
@@ -39717,6 +39820,16 @@ Tilemap:
   m_GameObject: {fileID: 1533004140}
   m_Enabled: 1
   m_Tiles:
+  - first: {x: 22, y: -4, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 307
+      m_TileSpriteIndex: 307
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   - first: {x: -8, y: -2, z: 0}
     second:
       serializedVersion: 2
@@ -40353,7 +40466,7 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 1
+  - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: 4e3cb7f557bbd8d4f92911cb4387d446, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 134f34b1f2edd1e4ea9af0f0a74ec86d, type: 2}
@@ -40972,12 +41085,12 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 1
+  - m_RefCount: 2
     m_Data: {fileID: 21300000, guid: e31bef2a8365f514183cb890b51f7327, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: a77e7828d16aa6b45a0e3681c6c59287, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 2
+  - m_RefCount: 3
     m_Data:
       e00: 1
       e01: 0
@@ -40996,7 +41109,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 2
+  - m_RefCount: 3
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray:
   - m_RefCount: 0
@@ -41471,11 +41584,11 @@ MonoBehaviour:
   dialogs:
   - SpeakerIndex: 0
     name: 
-    dialog: 
+    dialog: "X\uD0A4\uB97C \uD65C\uC6A9\uD574 \uBCBD\uC744 \uC7A1\uC744 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
   isAutoStart: 1
   isFirst: 1
   typingSpeed: 0.1
-  isTypingEffect: 1
+  isTypingEffect: 0
   isPlayMusic: 0
   soundType: 0
   isLoop: 0
